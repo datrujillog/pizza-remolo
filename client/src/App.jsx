@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import { CartProvider } from "./context/CartContext";
+import BottomNav from "./components/BottomNav";
 
 // function App() {
 //   return (
@@ -33,11 +34,14 @@ function App() {
             🛒 Carrito
           </Link>
         </nav>
-
+        <BottomNav />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/carrito" element={<Cart />} />
+          {/* Ruta de ejemplo para "más opciones" */}
+          <Route path="/opciones" element={<div className="p-4">⚙️ Opciones futuras</div>} />
         </Routes>
+        <BottomNav />
       </BrowserRouter>
     </CartProvider>
   );
