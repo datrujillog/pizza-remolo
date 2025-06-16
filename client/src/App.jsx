@@ -9,6 +9,9 @@ import Cart from "./pages/Cart";
 import { CartProvider } from "./context/CartContext";
 import BottomNav from "./components/BottomNav";
 import SplashScreen from "./components/SplashScreen";
+import Admin from "./pages/Admin";
+import AdminProductos from './pages/AdminProductos';
+import AdminCategorias from './pages/AdminCategorias';
 
 // function App() {
 //   return (
@@ -42,6 +45,10 @@ function App() {
           <Route path="/carrito" element={<Cart />} />
           {/* Ruta de ejemplo para "más opciones" */}
           <Route path="/opciones" element={<div className="p-4">⚙️ Opciones futuras</div>} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/productos" element={<AdminProductos />} />
+          <Route path="/admin/categorias" element={<AdminCategorias />} />
+
         </Routes>
         <BottomNav />
       </BrowserRouter>
