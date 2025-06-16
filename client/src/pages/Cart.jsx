@@ -33,7 +33,8 @@ const Cart = () => {
                 total
             };
 
-            const res = await axios.post("http://localhost:5000/api/orders", orderData);
+            // const res = await axios.post("http://localhost:5000/api/orders", orderData);
+            const res = await axios.post("https://9gfhrk4h-5000.use2.devtunnels.ms/api/orders", orderData);
 
             if (res.data && res.data.whatsappUrl) {
                 console.log("✅ Enlace generado:", res.data.whatsappUrl);
