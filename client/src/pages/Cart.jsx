@@ -39,6 +39,7 @@ const Cart = () => {
             if (res.data && res.data.whatsappUrl) {
                 console.log("✅ Enlace generado:", res.data.whatsappUrl);
                 setWhatsappUrl(res.data.whatsappUrl);
+                localStorage.setItem("lastOrderId", res.data.orderId); // ✅ Guardamos el ID del pedido reciente
                 clearCart();
             } else {
                 console.error("❌ No se recibió whatsappUrl del backend.");
@@ -147,6 +148,8 @@ const Cart = () => {
                                 Abrir WhatsApp manualmente
                             </a>
                         </div>
+
+
                     )}
 
 
