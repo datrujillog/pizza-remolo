@@ -79,6 +79,16 @@ const updateOrderStatus = async (req, res) => {
     }
 };
 
+const getAllOrders = async (req, res) => {
+    try {
+        const orders = await Order.find().sort({ createdAt: -1 }).populate("items.productId");
+        res.json(orders);
+    } catch (err) {
+        console.error("Error al obtener pedidos:", err);
+        res.status(500).json({ error: "Error al obtener los pedidos" });
+    }
+};
 
 
-module.exports = { createOrder, updateOrderStatus };
+
+module.exports = { createOrder, updateOrderStatus, getAllOrders };

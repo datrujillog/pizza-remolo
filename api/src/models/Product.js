@@ -5,7 +5,15 @@ const productSchema = new mongoose.Schema({
     description: String,
     category: { type: String, enum: ["pizza", "empanada", "bebida", "postre"] },
     price: Number,
-    imageUrl: String
+    imageUrl: String,
+    categoryId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Category"
+    },
+    published: {
+        type: Boolean,
+        default: false
+    }
 });
 
 module.exports = mongoose.model("Product", productSchema);
