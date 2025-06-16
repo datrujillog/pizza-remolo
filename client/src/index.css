@@ -8,6 +8,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes flameBackground {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.splash-bg {
+  background: radial-gradient(circle at center, #ffe082, #fb8c00, #e53935);
+  background-size: 400% 400%;
+  animation: flameBackground 5s ease-in-out infinite;
+}
+
 /* :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

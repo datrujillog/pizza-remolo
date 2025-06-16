@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import { CartProvider } from "./context/CartContext";
 import BottomNav from "./components/BottomNav";
+import SplashScreen from "./components/SplashScreen";
 
 // function App() {
 //   return (
@@ -34,6 +35,7 @@ function App() {
             🛒 Carrito
           </Link>
         </nav>
+        <SplashScreen />
         <BottomNav />
         <Routes>
           <Route path="/" element={<Home />} />
