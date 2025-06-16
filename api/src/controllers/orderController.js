@@ -58,7 +58,7 @@ const updateOrderStatus = async (req, res) => {
         const { id } = req.params;
         const { status } = req.body;
 
-        if (!["pendiente", "confirmado", "entregado"].includes(status)) {
+        if (!["recibido", "en preparacion", "listo", "entregado"].includes(status)) {
             return res.status(400).json({ error: "Estado inválido" });
         }
 

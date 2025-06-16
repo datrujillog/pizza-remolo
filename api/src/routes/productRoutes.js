@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getAllProducts, getAllProductsAdmin, updatePublishStatus, deleteProduct, createProduct } = require("../controllers/productController");
+const { getAllProducts, getAllProductsAdmin, updatePublishStatus, deleteProduct, createProduct, updateProduct } = require("../controllers/productController");
 
 router.get("/", getAllProducts);
 
@@ -9,6 +9,8 @@ router.get("/admin", getAllProductsAdmin);
 router.patch("/:id/publish", updatePublishStatus);
 router.delete("/:id", deleteProduct);
 router.post("/create", createProduct);
+router.patch("/:id", updateProduct);
+
 
 
 

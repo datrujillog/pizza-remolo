@@ -5,7 +5,7 @@ import AdminLayout from "../layouts/AdminLayout";
 const Admin = () => {
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
-    const estados = ["recibido", "en preparación", "listo", "entregado"];
+    const estados = ["recibido", "en preparacion", "listo", "entregado"];
 
     useEffect(() => {
         fetchOrders();
@@ -63,12 +63,12 @@ const Admin = () => {
                                 value={order.status}
                                 onChange={e => handleEstadoChange(order._id, e.target.value)}
                                 className={`border px-3 py-1 rounded font-medium ${order.status === "recibido"
-                                        ? "bg-blue-100 text-blue-800"
-                                        : order.status === "en preparación"
-                                            ? "bg-yellow-100 text-yellow-800"
-                                            : order.status === "listo"
-                                                ? "bg-green-100 text-green-800"
-                                                : "bg-gray-200 text-gray-800"
+                                    ? "bg-blue-100 text-blue-800"
+                                    : order.status === "en preparación"
+                                        ? "bg-yellow-100 text-yellow-800"
+                                        : order.status === "listo"
+                                            ? "bg-green-100 text-green-800"
+                                            : "bg-gray-200 text-gray-800"
                                     }`}
                             >
                                 {estados.map(e => (

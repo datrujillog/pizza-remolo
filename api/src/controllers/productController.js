@@ -67,6 +67,17 @@ const createProduct = async (req, res) => {
     }
 };
 
+const updateProduct = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const updated = await Product.findByIdAndUpdate(id, req.body, { new: true });
+        res.json(updated);
+    } catch (err) {
+        res.status(500).json({ error: "Error actualizando producto" });
+    }
+};
 
 
-module.exports = { getAllProducts, getAllProductsAdmin, updatePublishStatus, deleteProduct, createProduct };
+
+
+module.exports = { getAllProducts, getAllProductsAdmin, updatePublishStatus, deleteProduct, createProduct, updateProduct };

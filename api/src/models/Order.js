@@ -13,8 +13,8 @@ const orderSchema = new mongoose.Schema({
     note: String,
     status: {
         type: String,
-        enum: ["pendiente", "confirmado", "entregado"],
-        default: "pendiente"
+        enum: ["recibido", "en preparacion", "listo", "entregado"],
+        default: "recibido"
     },
     createdAt: { type: Date, default: Date.now }
 });

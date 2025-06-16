@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import AdminLayout from "../layouts/AdminLayout";
 import ModalCrearProducto from "../components/ModalCrearProducto";
+import ModalEditarProducto from "../components/ModalEditarProducto";
+
 
 
 const AdminProductos = () => {
@@ -9,6 +11,9 @@ const AdminProductos = () => {
     const [pagina, setPagina] = useState(1);
     const productosPorPagina = 5;
     const [mostrarModal, setMostrarModal] = useState(false);
+    const [editarVisible, setEditarVisible] = useState(false);
+    const [productoSeleccionado, setProductoSeleccionado] = useState(null);
+
 
 
     useEffect(() => {
@@ -91,6 +96,16 @@ const AdminProductos = () => {
                             >
                                 Eliminar
                             </button>
+                            <button
+                                onClick={() => {
+                                    setProductoSeleccionado(prod);
+                                    setEditarVisible(true);
+                                }}
+                                className="px-3 py-1 text-sm rounded bg-yellow-500 text-white hover:bg-yellow-600"
+                            >
+                                Editar
+                            </button>
+
                         </div>
                     </div>
                 ))}
@@ -119,6 +134,14 @@ const AdminProductos = () => {
                     setProductos([nuevo, ...productos]);
                 }}
             />
+
+            <ModalEditarProducto
+                visible={editarVisible}
+                onClose={() => setEditarVisible(false)}
+                producto={productoSeleccionado}
+                onUpdated={() => obtenerProductos()}
+            />
+
 
         </AdminLayout>
 

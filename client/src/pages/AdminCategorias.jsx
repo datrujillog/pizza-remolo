@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import AdminLayout from "../layouts/AdminLayout";
+import ModalEditarCategoria from "../components/ModalEditarCategoria";
+
 
 const AdminCategorias = () => {
     const [categorias, setCategorias] = useState([]);
     const [nuevaCategoria, setNuevaCategoria] = useState("");
+    const [mostrarEditar, setMostrarEditar] = useState(false);
+    const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
+
 
     useEffect(() => {
         cargarCategorias();
@@ -85,7 +90,17 @@ const AdminCategorias = () => {
                                     {cat.visible ? "Visible" : "Oculta"}
                                 </span>
                             </p>
+
                         </div>
+                        <button
+                            onClick={() => {
+                                setCategoriaSeleccionada(cat);
+                                setMostrarEditar(true);
+                            }}
+                            className="px-3 py-1 rounded bg-yellow-500 text-white hover:bg-yellow-600"
+                        >
+                            Editar
+                        </button>
                         <button
                             onClick={() => toggleVisibilidad(cat._id, cat.visible)}
                             className={`px-4 py-2 rounded text-white ${cat.visible ? "bg-yellow-500 hover:bg-yellow-600" : "bg-blue-600 hover:bg-blue-700"
@@ -93,9 +108,19 @@ const AdminCategorias = () => {
                         >
                             {cat.visible ? "Ocultar" : "Mostrar"}
                         </button>
+
+
                     </div>
                 ))}
             </div>
+
+            <ModalEditarCategoria
+                visible={mostrarEditar}
+                onClose={() => setMostrarEditar(false)}
+                categoria={categoriaSeleccionada}
+                onUpdated={() => cargarCategorias()}
+            />
+
         </AdminLayout>
     );
 };

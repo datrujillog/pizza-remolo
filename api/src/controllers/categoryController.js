@@ -35,14 +35,15 @@ const getVisibleCategories = async (req, res) => {
 
 const updateCategoryVisibility = async (req, res) => {
     const { id } = req.params;
-    const { visible } = req.body;
+    const { name, visible } = req.body;
     try {
-        const updated = await Category.findByIdAndUpdate(id, { visible }, { new: true });
+        const updated = await Category.findByIdAndUpdate(id, { name, visible }, { new: true });
         res.json(updated);
     } catch (err) {
-        res.status(500).json({ error: "Error actualizando visibilidad" });
+        res.status(500).json({ error: "Error actualizando categoría" });
     }
 };
+
 
 
 module.exports = {
