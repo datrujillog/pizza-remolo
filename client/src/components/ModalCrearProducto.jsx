@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { UrlBase, Url } from "../api/api";
+
 
 const ModalCrearProducto = ({ visible, onClose, onCreated }) => {
     const [form, setForm] = useState({
@@ -15,7 +17,7 @@ const ModalCrearProducto = ({ visible, onClose, onCreated }) => {
     useEffect(() => {
         const cargarCategorias = async () => {
             try {
-                const res = await axios.get("https://9gfhrk4h-5000.use2.devtunnels.ms/api/categories");
+                const res = await axios.get(`${UrlBase}/categories`);
                 // const res = await axios.get("http://localhost:5000/api/categories");
                 setCategorias(res.data.filter(cat => cat.visible));
             } catch (err) {
@@ -36,7 +38,8 @@ const ModalCrearProducto = ({ visible, onClose, onCreated }) => {
         }
 
         try {
-            await axios.post("https://9gfhrk4h-5000.use2.devtunnels.ms/api/products/create", {
+            await axios.post(`${UrlBase}/products/create`, {
+                // await axios.post("https://9gfhrk4h-5000.use2.devtunnels.ms/api/products/create", {
                 ...form,
                 published: false
             });

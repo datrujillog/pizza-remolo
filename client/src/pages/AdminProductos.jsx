@@ -3,6 +3,8 @@ import axios from "axios";
 import AdminLayout from "../layouts/AdminLayout";
 import ModalCrearProducto from "../components/ModalCrearProducto";
 import ModalEditarProducto from "../components/ModalEditarProducto";
+import { UrlBase, Url } from "../api/api";
+
 
 
 
@@ -22,7 +24,7 @@ const AdminProductos = () => {
 
     const obtenerProductos = async () => {
         try {
-            const res = await axios.get("https://9gfhrk4h-5000.use2.devtunnels.ms/api/products/admin");
+            const res = await axios.get(`${UrlBase}/products/admin`);
             //   const res = await axios.get("http://localhost:5000/api/products/admin");
             setProductos(res.data);
         } catch (err) {
@@ -32,7 +34,7 @@ const AdminProductos = () => {
 
     const cambiarEstado = async (id, publicado) => {
         try {
-            await axios.patch(`https://9gfhrk4h-5000.use2.devtunnels.ms/api/products/${id}/publish`, { published: publicado });
+            await axios.patch(`${UrlBase}/products/${id}/publish`, { published: publicado });
             //   await axios.patch(`http://localhost:5000/api/products/${id}/publish`, { published: publicado });
             obtenerProductos();
         } catch (err) {
@@ -43,7 +45,7 @@ const AdminProductos = () => {
     const eliminarProducto = async (id) => {
         if (!confirm("¿Seguro que deseas eliminar este producto?")) return;
         try {
-            await axios.delete(`https://9gfhrk4h-5000.use2.devtunnels.ms/api/products/${id}`);
+            await axios.delete(`${UrlBase}/products/${id}`);
             //   await axios.delete(`http://localhost:5000/api/products/${id}`);
             obtenerProductos();
         } catch (err) {

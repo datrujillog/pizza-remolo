@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { UrlBase, Url } from "../api/api";
 
 const ModalEditarProducto = ({ visible, onClose, producto, onUpdated }) => {
     const [form, setForm] = useState({ ...producto });
     const [categorias, setCategorias] = useState([]);
 
-    const UrlBase = "https://9gfhrk4h-5000.use2.devtunnels.ms";
-    const UrlLocal = "http://localhost:5000";
+
 
     useEffect(() => {
         setForm({ ...producto });
@@ -15,7 +15,7 @@ const ModalEditarProducto = ({ visible, onClose, producto, onUpdated }) => {
     useEffect(() => {
         const cargarCategorias = async () => {
             try {
-                const res = await axios.get(`${UrlBase}/api/categories/visible`);
+                const res = await axios.get(`${UrlBase}/categories/visible`);
                 // const res = await axios.get("http://localhost:5000/api/categories/visible");
                 setCategorias(res.data);
             } catch (err) {
@@ -36,7 +36,7 @@ const ModalEditarProducto = ({ visible, onClose, producto, onUpdated }) => {
         }
 
         try {
-            await axios.patch(`${UrlBase}/api/products/${producto._id}`, {
+            await axios.patch(`${UrlBase}/products/${producto._id}`, {
                 // await axios.patch(`http://localhost:5000/api/products/${producto._id}`, {
                 ...form
             });

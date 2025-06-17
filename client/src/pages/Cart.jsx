@@ -3,6 +3,8 @@ import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import { UrlBase, Url } from "../api/api";
+
 
 const Cart = () => {
     const { cart, removeFromCart, clearCart } = useCart();
@@ -34,7 +36,7 @@ const Cart = () => {
             };
 
             // const res = await axios.post("http://localhost:5000/api/orders", orderData);
-            const res = await axios.post("https://9gfhrk4h-5000.use2.devtunnels.ms/api/orders", orderData);
+            const res = await axios.post(`${UrlBase}/api/orders`, orderData);
 
             if (res.data && res.data.whatsappUrl) {
                 console.log("✅ Enlace generado:", res.data.whatsappUrl);

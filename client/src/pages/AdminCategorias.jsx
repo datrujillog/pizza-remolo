@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import AdminLayout from "../layouts/AdminLayout";
 import ModalEditarCategoria from "../components/ModalEditarCategoria";
+import { UrlBase, Url } from "../api/api";
+
 
 
 const AdminCategorias = () => {
@@ -17,7 +19,7 @@ const AdminCategorias = () => {
 
     const cargarCategorias = async () => {
         try {
-            const res = await axios.get("https://9gfhrk4h-5000.use2.devtunnels.ms/api/categories");
+            const res = await axios.get(`${UrlBase}/categories`);
             setCategorias(res.data);
         } catch (err) {
             console.error("Error cargando categorías:", err);
@@ -27,7 +29,7 @@ const AdminCategorias = () => {
     const crearCategoria = async () => {
         if (!nuevaCategoria.trim()) return;
         try {
-            await axios.post("https://9gfhrk4h-5000.use2.devtunnels.ms/api/categories", {
+            await axios.post(`${UrlBase}/categories`, {
                 // await axios.post("http://localhost:5000/api/categories", {
                 name: nuevaCategoria,
                 visible: true
@@ -41,7 +43,7 @@ const AdminCategorias = () => {
 
     const toggleVisibilidad = async (id, estadoActual) => {
         try {
-            await axios.patch(`https://9gfhrk4h-5000.use2.devtunnels.ms/api/categories/${id}`, {
+            await axios.patch(`${UrlBase}/categories/${id}`, {
                 // await axios.patch(`http://localhost:5000/api/categories/${id}`, {
                 visible: !estadoActual
             });

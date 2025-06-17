@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import AdminLayout from "../layouts/AdminLayout";
+import { UrlBase, Url } from "../api/api";
 
 const Admin = () => {
     const [orders, setOrders] = useState([]);
@@ -13,7 +14,7 @@ const Admin = () => {
 
     const fetchOrders = async () => {
         try {
-            const res = await axios.get("https://9gfhrk4h-5000.use2.devtunnels.ms/api/orders");
+            const res = await axios.get(`${UrlBase}/orders`);
             //   const res = await axios.get("http://localhost:5000/api/orders");
             setOrders(res.data);
         } catch (err) {
@@ -25,7 +26,7 @@ const Admin = () => {
 
     const handleEstadoChange = async (id, newEstado) => {
         try {
-            await axios.patch(`https://9gfhrk4h-5000.use2.devtunnels.ms/api/orders/${id}/status`, { status: newEstado });
+            await axios.patch(`${UrlBase}/orders/${id}/status`, { status: newEstado });
             //   await axios.patch(`http://localhost:5000/api/orders/${id}/status`, { status: newEstado });
             fetchOrders();
         } catch (err) {

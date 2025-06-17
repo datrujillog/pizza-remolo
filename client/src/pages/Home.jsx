@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useCart } from "../context/CartContext";
 import { motion, AnimatePresence } from "framer-motion";
+import { UrlBase, Url } from "../api/api";
 
 const Home = () => {
     const [products, setProducts] = useState([]);
@@ -18,10 +19,10 @@ const Home = () => {
     const cargarDatos = async () => {
         try {
             const [prodRes, catRes] = await Promise.all([
-                axios.get("https://9gfhrk4h-5000.use2.devtunnels.ms/api/products"),
-                // axios.get("http://localhost:5000/api/products"),
-                axios.get("https://9gfhrk4h-5000.use2.devtunnels.ms/api/categories/visible")
-                // axios.get("http://localhost:5000/api/categories/visible")
+                // axios.get(baseApiUrl('api/products')),
+                axios.get(`${UrlBase}/products`),
+                // axios.get(baseApiUrl('api/categories/visible'))
+                axios.get(`${UrlBase}/categories/visible`),
             ]);
 
             setProducts(prodRes.data);
@@ -57,8 +58,8 @@ const Home = () => {
                     <button
                         onClick={() => handleFilter("todos")}
                         className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold shadow-md transition-all duration-150 ${selectedCategory === "todos"
-                                ? "bg-green-600 text-white scale-105"
-                                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                            ? "bg-green-600 text-white scale-105"
+                            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                             }`}
                     >
                         🍽️ Todos
@@ -68,8 +69,8 @@ const Home = () => {
                             key={cat._id}
                             onClick={() => handleFilter(cat._id)}
                             className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold shadow-md transition-all duration-150 whitespace-nowrap ${selectedCategory === cat._id
-                                    ? "bg-green-600 text-white scale-105"
-                                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                                ? "bg-green-600 text-white scale-105"
+                                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                                 }`}
                         >
                             📁 {cat.name}

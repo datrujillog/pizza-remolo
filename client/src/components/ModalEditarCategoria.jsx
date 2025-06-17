@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { UrlBase, Url } from "../api/api";
+
 
 const ModalEditarCategoria = ({ visible, onClose, categoria, onUpdated }) => {
     const [form, setForm] = useState({ ...categoria });
@@ -23,7 +25,7 @@ const ModalEditarCategoria = ({ visible, onClose, categoria, onUpdated }) => {
         }
 
         try {
-            await axios.patch(`http://localhost:5000/api/categories/${categoria._id}`, {
+            await axios.patch(`${UrlBase}/categories/${categoria._id}`, {
                 name: form.name,
                 visible: form.visible
             });
